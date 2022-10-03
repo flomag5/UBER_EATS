@@ -1,6 +1,6 @@
 <template>
     <div class="restaurant--card">
-        <div :style="changeBackground" class="restaurant--image">
+        <div  class="restaurant--image" >
             <span class="heart">
                 <i class="fas fa-heart"></i>
             </span>
@@ -8,36 +8,42 @@
         <div class="restaurant--information">
             <div class="top">
                 <p class="name">
-                    {{info_restaurant.name}}
+                    {{restaurant.name}}
                 </p>
                 <p class="note">
-                    <span>{{info_restaurant.note}}</span>
+                    <span>{{restaurant.note}}</span>
                 </p>
 
             </div>
-            <p class="time">{{info_restaurant.drive_time}}</p>
+            <p class="time">{{restaurant.drive_time}}</p>
         </div>
     </div>
 </template>
 
 <script>
-import  { computed} from 'vue'
+import RestaurantDataService from '../services/RestaurantDataService';
 
 export default {
     name: 'RestoCard',
-    props: {
-        info_restaurant: Object
-    },
-    setup(props) {
-        const changeBackground = computed(() => {
-            return {
-                backgroundImage: `url(${props.info_restaurant.image})`
-            }
-        })
+    data() {
         return {
-            changeBackground
-        }     
-    
+        restaurant: {
+                name: "",
+                image: "",
+                note: "",
+            drive_time: "",
+            },
+        }
+    },
+    created() {
+        RestaurantDataService.getAllRestaurants()
+            .then((response) => {
+                this.restaurant = response.data;
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     },
 }
 
@@ -54,7 +60,7 @@ export default {
             margin: 0px;
         }
         .restaurant--image{
-            background-image: url("https://cn-geo1.uber.com/image-proc/resize/eats/format=webp/width=550/height=440/quality=70/srcb64=aHR0cHM6Ly9kMXJhbHNvZ25qbmczNy5jbG91ZGZyb250Lm5ldC8zNzg4MDJiMC1jNTI4LTQ4MjktYjBiNS0wY2M2NDBkZjYzY2QuanBlZw==");
+            
             height: 70%;
             background-size: cover;
             background-position: center;

@@ -1,20 +1,15 @@
+//--- Configuration du projet ---//
+
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router/index.js';
+import store from './store';
 
-import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from './page/home.vue'
-import Restaurant from './page/Restaurant.vue'
 
-const routes = [
-    { path: '/', component: Home },
-    { name: 'Restaurant', path: '/restaurant/:name', component: Restaurant }
-]
-
-const router = createRouter({
-    history: createWebHashHistory(),
-    routes
-});
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const VueApp = createApp(App)
 VueApp.use(router)
+VueApp.use(store)
 VueApp.mount('#app')

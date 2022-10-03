@@ -44,9 +44,9 @@ exports.createMenu = (req, res, next) => {
 exports.getAllMenus = (req, res, next) => {
 
     Menu.findAll({
-        /*include: [
+        include: [
             "restaurant"
-        ]*/
+        ]
     })
         .then(response => res.status(200).json(response))
         .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
@@ -59,9 +59,9 @@ exports.getOneMenu = (req, res, next) => {
         where: {
             id: req.params.id,
         },
-        /* include: [
-             "menu"
-         ]*/
+        include: [
+            "restaurant"
+        ]
     })
         .then(menu => res.status(200).json(menu))
         .catch(error => console.log(error))

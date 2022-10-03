@@ -7,9 +7,12 @@
             </button>
             <button class="takeoff">A emporter</button>
         </div>
+        <div class="wrapper--input">
+            <i class="fa-solid fa-location-pin"></i>
         <VueGoogleAutocomplete ref="address" id="map" classname="form-control" placeholder="où je me trouve"
             v-on:placechanged="getAddressData">
         </VueGoogleAutocomplete>
+        </div>
         <div class="wrapper--input">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input v-model="user_search" type="text" placeholder="De quoi avez-vous envie?">
@@ -27,9 +30,10 @@
         </div>
         <button class="cart" id="cart">
             <p><i class="fa-solid fa-cart-arrow-down"></i>
-                Panier</p>
+                </p>
         </button>
         <div class="user--session">
+            <router-link :to="'/login'">
             <button class="login">
                 <i class="fa-solid fa-user"></i>
                 Connexion
@@ -37,6 +41,7 @@
             <button class="submit">
                 Inscription
             </button>
+            </router-link>
         </div>
     </div>
 </template>
@@ -92,13 +97,13 @@ export default {
 
                 let new_search_restaurant = all_restaurant.filter(restaurant => regex.test(restaurant.name.toLowerCase()));
 
-                /*
+                
                 if (newValue == 0) {
                     search_restaurant.value = []
                 } else {
                     search_restaurant.value = new_search_restaurant;
                 }
-    */
+    
                 //style condition ternaire
                 newValue == 0 ? search_restaurant.value = [] : search_restaurant.value = new_search_restaurant
             })
@@ -129,8 +134,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-
 .header {
     height: 120px;
     width: 100%;
@@ -172,7 +175,11 @@ export default {
         cursor: pointer;
         background-color: black;
         color: #fff;
-
+        height: 50px;
+        width: 50px;
+        i{
+            padding-top: 16px;
+        }
         &:hover {
             background-color: #06C167;
             transition: ease-in-out 0.3s;

@@ -27,6 +27,15 @@ db.restaurant = require("./restaurant.model.js")(sequelize, Sequelize);
 db.menu = require("./menu.model.js")(sequelize, Sequelize);
 db.like = require("./like.model.js")(sequelize, Sequelize);
 
+// Jointures pour post / user
+db.restaurant.hasMany(db.menu, {
+    foreignKey: 'restaurantId',
+    as: "menu"
+});
 
+db.menu.belongsTo(db.restaurant, {
+    foreignKey: 'restaurantId', as: "restaurant", onDelete: 'cascade',
+    onUpdate: 'cascade'
+});
 
 module.exports = db;

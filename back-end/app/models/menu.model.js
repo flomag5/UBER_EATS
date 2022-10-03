@@ -30,7 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         restaurantId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            onDelete: "CASCADE",
+            references: {
+                model: "restaurant",
+                key: "id"
+            }
         },
     });
 

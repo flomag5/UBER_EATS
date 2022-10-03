@@ -28,6 +28,7 @@ module.exports = app => {
 
 
     // Route Menu
+    router.get("/:restaurantId/all", menus.getAllMenus);
     router.post('/:id/menu', menus.createMenu);
 
     // Route de like/unlike

@@ -4,17 +4,28 @@
       integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
     <router-view></router-view>
+   <!--<Header />
+   <Hero />
+<RestoRow />
+   <Footer />-->
   </div>
 </template>
 
 <script>
+/*import Header from "./components/Header.vue"
+import Hero from "./components/Hero.vue"
+import RestoRow from "./components/RestoRow.vue"
+import Footer from "./components/Footer.vue"*/
 
 
 export default {
   name: 'App',
-  components: {
-  
-  }
+  /*components: {
+    Hero,
+    Header,
+    RestoRow,
+    Footer
+}*/
 }
 </script>
 
