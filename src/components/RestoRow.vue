@@ -28,8 +28,8 @@
         </div>
         <div class="restaurant--list">
             <h2 class="title">Tous les restaurants autour de moi</h2>
-            <div class="wrapper--card" v-for="restaurant in restaurants" :key="restaurant.id">
-                <div class="restaurant--card">
+         <div class="wrapper--card" >
+                <div class="restaurant--card" v-for="restaurant in restaurants" :key="restaurant.id">
                 <div class="restaurant--image">
                     <img :src="restaurant.image" alt="photo du resto" class="img-responsive" />
                     <span class="heart">
@@ -50,19 +50,19 @@
                     <p class="time">{{restaurant.drive_time}}</p>
                 </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 </template>
 
 <script>
 import RestaurantDataService from '../services/RestaurantDataService';
-
+//import RestoCard from './RestoCard.vue';
 
 export default {
     name: "RestoRow",
     components: {
-    
+    //RestoCard
     },
     data() {
         return {
@@ -91,40 +91,82 @@ export default {
 
 <style lang="scss">
 .restaurant--row{
+    width: 100%;
     .title{
         font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 1vh;
+        padding-left: 10px;
     }
-    .wrapper--card{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        .wrapper--card {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+    
+        }
+    
+}
+.restaurant--popular{
+height: 300px;
+background: #f2f2f2;
+align-items: center;
+.title {
+        padding-top: 10px;
+        padding-left: 10px;
     }
+    .wrapper--card {
+        //width: 40%;
+            display: inline-flex;
+            justify-content: space-evenly;
+            
+        }
 }
 
 .restaurant--card {
-    width: 32%;
-    height: 30vh;
+        display: flex;
+        flex-direction: column;
+        border: solid 5px transparent;
+        border-radius: 20px;
+        background: white;
+        box-shadow: 0px 4px 5px 0 #e2e2e2;
+        width: 480px;
+        height: 200px;
+        margin: 15px 50px;
+        &:hover {
+                box-shadow: 5px 5px 3px lightgray;
+                transition: ease-in-out 0.3s;
+                transform: scale(1.1);
+            }
 
     p {
         margin: 0px;
     }
-
-    .restaurant--image {
-
-        height: 70%;
-        background-size: cover;
-        background-position: center;
-
+}
+.restaurant--card > .restaurant--image {
+    width: 468px;
+    height: 115px;
+    background-size: 100% 100%;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+}
+    .restaurant--image img{
+        //height: 70%;
+        width: 100%;
+            height: 115px;
+            background-size: 100% 100%;
+            border-radius: 20px 20px 0 0;
+            object-fit: cover;
     }
 
     .fa-heart {
-        display: flex;
+        position: absolute;
         font-size: 1.8em;
         color: transparent;
         -webkit-text-stroke: 3px white;
-        opacity: 0.5;
-        margin-left: 92%;
-        padding-top: 2%;
+        opacity: 0.9;
+        top: 15px;
+        right: 15px;
+
     }
 
     .fa-heart:hover {
@@ -161,5 +203,7 @@ export default {
             font-size: 0.9rem;
         }
     }
-}
+    .restaurant--list{
+        margin: 30px auto;
+    }
 </style>

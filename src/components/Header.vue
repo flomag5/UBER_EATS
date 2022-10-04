@@ -8,8 +8,8 @@
             <button class="takeoff">A emporter</button>
         </div>
         <div class="wrapper--input">
-            <i class="fa-solid fa-location-pin"></i>
-        <VueGoogleAutocomplete ref="address" id="map" classname="form-control" placeholder="où je me trouve"
+            <i class="fa-solid fa-location-pin" id="location"></i>
+        <VueGoogleAutocomplete ref="address" id="map" classname="form-control" placeholder="Où je me trouve"
             v-on:placechanged="getAddressData">
         </VueGoogleAutocomplete>
         </div>
@@ -229,7 +229,11 @@ export default {
         outline: none;
         padding: 2px 40px;
         margin: auto 15px;
-        display: inline-block;
+        display: inline-block; 
+}
+
+#location{
+    padding-left: 26px;
 }
     .wrapper--input {
         position: relative;
@@ -247,7 +251,7 @@ export default {
             background-color: #f6f6f6;
             border: none;
             height: 50px;
-            width: 200px;
+            width: 250px;
             outline: none;
             padding: 2px 40px;
             display: inline-block;

@@ -1,6 +1,7 @@
 <template>
     <div class="restaurant--card">
         <div  class="restaurant--image" >
+            <img :src="restaurant.image" alt="photo du resto" class="img-responsive" />
             <span class="heart">
                 <i class="fas fa-heart"></i>
             </span>
@@ -27,6 +28,7 @@ export default {
     name: 'RestoCard',
     data() {
         return {
+            restaurants: [],
         restaurant: {
                 name: "",
                 image: "",

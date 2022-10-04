@@ -45,7 +45,7 @@ name: "Footer"
 .footer {
     display: flex;
     width: 100%;
-    margin-top: 25px;
+    margin: 40px auto;
     background-color: #fff;
     justify-content: space-between;
 }
@@ -66,6 +66,7 @@ a{
     text-decoration: none;
     &:hover{
         text-decoration: underline;
+        color: black;
     }
 }
 
