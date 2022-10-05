@@ -2,15 +2,15 @@
     <div class="restaurant--row">
         <div class="restaurant--popular">
             <h2 class="title">Populaires à proximité</h2>
-            <div class="wrapper--card" v-for="restaurant in restaurants" :key="restaurant.id">
-                <div class="restaurant--card" v-if="restaurant.note >= 4.4">
+            <div class="wrapper--card" id="wrapper--card" >
+                <div class="restaurant--card" v-for="restaurant in popular(restaurant)" :key="restaurant.id">
                     <div class="restaurant--image">
                         <img :src="restaurant.image" alt="photo du resto" class="img-responsive">
                         <span class="heart">
                             <i class="fas fa-heart"></i>
                         </span>
-                      
                     </div>
+                    <router-link :to="`/restaurants/${restaurant.id}`" style="text-decoration:none">
                     <div class="restaurant--information">
                         <div class="top">
                             <p class="name">
@@ -19,12 +19,13 @@
                             <p class="note">
                                 <span>{{restaurant.note}}</span>
                             </p>
-                
                         </div>
                         <p class="time">{{restaurant.drive_time}}</p>
                     </div>
+                    </router-link>
                 </div>
             </div>
+            
         </div>
         <div class="restaurant--list">
             <h2 class="title">Tous les restaurants autour de moi</h2>
@@ -35,8 +36,8 @@
                     <span class="heart">
                         <i class="fas fa-heart"></i>
                     </span>
-                    
                 </div>
+                <router-link :to="`/restaurants/${restaurant.id}`" style="text-decoration:none">
                 <div class="restaurant--information">
                     <div class="top">
                         <p class="name">
@@ -45,10 +46,10 @@
                         <p class="note">
                             <span>{{restaurant.note}}</span>
                         </p>
-                
                     </div>
                     <p class="time">{{restaurant.drive_time}}</p>
                 </div>
+                </router-link>
                 </div>
             </div> 
         </div>
@@ -57,12 +58,12 @@
 
 <script>
 import RestaurantDataService from '../services/RestaurantDataService';
-//import RestoCard from './RestoCard.vue';
+
 
 export default {
     name: "RestoRow",
     components: {
-    //RestoCard
+    
     },
     data() {
         return {
@@ -74,7 +75,7 @@ export default {
                 drive_time: "",
             }
     }
-},
+    },
     created() {
             RestaurantDataService.getAllRestaurants()
                 .then((response) => {
@@ -85,8 +86,15 @@ export default {
             console.log(error)
         })
     },
-
+    methods: {
+        popular: function () {
+            return this.restaurants.filter(function (restaurant) {
+                return restaurant.note >= 4.4;
+            })
+        }
+    }
 }
+
 </script>
 
 <style lang="scss">
@@ -99,27 +107,22 @@ export default {
         padding-left: 10px;
     }
         .wrapper--card {
-            display: inline-flex;
+            display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
-    
         }
     
 }
 .restaurant--popular{
+width: 100%;
 height: 300px;
 background: #f2f2f2;
-align-items: center;
+justify-self: space-between;
 .title {
         padding-top: 10px;
         padding-left: 10px;
     }
-    .wrapper--card {
-        //width: 40%;
-            display: inline-flex;
-            justify-content: space-evenly;
-            
-        }
+    
 }
 
 .restaurant--card {
@@ -131,7 +134,8 @@ align-items: center;
         box-shadow: 0px 4px 5px 0 #e2e2e2;
         width: 480px;
         height: 200px;
-        margin: 15px 50px;
+        margin: 15px auto;
+        
         &:hover {
                 box-shadow: 5px 5px 3px lightgray;
                 transition: ease-in-out 0.3s;

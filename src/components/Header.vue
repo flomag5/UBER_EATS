@@ -1,6 +1,8 @@
 <template>
     <div class="header">
+        <router-link :to="'/'">
         <img src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/ee037401cb5d31b23cf780808ee4ec1f.svg" alt="">
+        </router-link>
         <div class="order">
             <button class="delivery">
                 Livraison
@@ -18,7 +20,7 @@
             <input v-model="user_search" type="text" placeholder="De quoi avez-vous envie?">
             <div class="search">
                 <router-link v-for="(restaurant, i) in search_restaurant" :key="i"
-                    :to="{ name: 'Restaurant', params: { name: restaurant.name } }">
+                    :to="{ name: 'Restaurant', params: { name: restaurant.id} }">
                     <div class="container--restaurant--search">
                         <div class="wrapper--img">
                             <img :src="restaurant.image" alt="">
@@ -72,7 +74,7 @@ export default {
             let data_restaurant = ref([]);
             let all_restaurant = [];
 
-            const dataRestaurant = () => {
+           const dataRestaurant = () => {
                 let three_restaurant = [];
 
                 for (const restaurant of BDD) {
@@ -96,7 +98,6 @@ export default {
                 let regex = RegExp(newValue.toLowerCase());
 
                 let new_search_restaurant = all_restaurant.filter(restaurant => regex.test(restaurant.name.toLowerCase()));
-
                 
                 if (newValue == 0) {
                     search_restaurant.value = []

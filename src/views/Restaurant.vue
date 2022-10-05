@@ -1,21 +1,22 @@
 <template>
   <Header></Header>
-  <div class="banner">
+  <div class="b6 ao ap d4 eq f8" id="banner">
 <img :src="restaurant.image" alt="photo du resto" class="img-responsive">
     <div class="restaurant--love">
-      <div class="cercle"></div>
+      <div class="cercle">
       <span class="heart">
         <i class="fas fa-heart"></i>
       </span>
+      </div>
     </div>
   </div>
   <div class="restaurant--infos">
-    <h1 class="restaurant--name">{{restaurant.name}}</h1>
-    <h4 class="restaurant--specs"><i class="fa-solid fa-star"></i> Note {{restaurant.note}} <i class="fa-solid fa-circle"></i> {{restaurant.category}} <i
+    <h2 class="restaurant--name">{{restaurant.name}}</h2>
+    <h6 class="restaurant--specs"><i class="fa-solid fa-star"></i> Note {{restaurant.note}} <i class="fa-solid fa-circle"></i> {{restaurant.category}} <i
         class="fa-solid fa-circle"></i> {{restaurant.drive_time}} <i class="fa-solid fa-circle"></i>  <img
         src="https://dkl8of78aprwd.cloudfront.net/ticket@3x.png" width="14" height="14" vertical-align="middle"> <i
         class="fa-solid fa-circle"> </i> Plus
-      d'informations</h4>
+      d'informations</h6>
     <p class="restaurant--hours">Ouvert jusqu'à 2:30 PM</p>
   </div>
   <container class="order--guidelines">
@@ -41,13 +42,16 @@
       <a class="nav-link" href="#">Plats</a>
       <a class="nav-link" href="#">Burgers</a>
       <a class="nav-link" href="#">Salades</a>
+      <a class="nav-link" href="#">Poke Bowls</a>
+      <a class="nav-link" href="#">Accompagnements</a>
+      <a class="nav-link" href="#">Exclusivités</a>
       <a class="nav-link" href="#">Boissons</a>
       <a class="nav-link" href="#">Menu enfant</a>
     </nav>
   </aside>
 <div class="bloc">
-<div class="menu--cards" v-for="menu in restaurant.menu" v-bind:key="menu.id">
-  <div class="menu--card">
+<div class="menu--cards">
+  <div class="menu--card" v-for="menu in restaurant.menu" v-bind:key="menu.id">
     <div class="menu--image">
       <img :src="menu.image" alt="photo du resto" class="img-responsive">
     </div>
@@ -59,9 +63,9 @@
     <div class="p-4 md:p-5 bg-gray-100">
       <div class="sm:flex sm:justify-between sm:items-center">
         <div>
-          <div class="text-lg text-gray-700"><span class="text-gray-900 font-bold" id="menu--price">{{menu.price}}</span> € </div>
+          <div class="text-lg text-gray-700"><span class="text-gray-900 font-bold" id="menu--price">{{menu.price}}€</span> </div>
           <button
-            class="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-indigo-700 hover:bg-indigo-600 font-bold text-white md:text-lg rounded-lg shadow-md" id="add"> + </button>
+            class="add" id="add"> + </button>
         </div>
       </div>
     </div>
@@ -114,7 +118,6 @@ export default {
         console.log(error);
       });
   },
-  // Récupération des commentaires
   
   mounted() {
     let id = this.$route.params.id;
@@ -131,9 +134,10 @@ export default {
 
 
 <style lang="scss">
-.banner {
+#banner {
   height: 200px;
-  width: 100%;
+  //width: 100%;
+  //position: absolute;
   background-size: cover;
   background-position: center center;
 .img-responsive{
@@ -186,7 +190,9 @@ button {
     background-color: darkgray;
     transition: ease-in-out 0.4s;
   }
-
+}
+.restaurant--infos{
+  margin: 15px auto;
 }
 #group-order{
   width: 210px;
@@ -230,7 +236,7 @@ width: 158px;
   display: inline-block;
   vertical-align: top;
   height: 100vh;
-  width: 18vw;
+  width: 17%;
   position: sticky;
   flex-shrink: 0;
   overflow-y: auto;
@@ -240,13 +246,14 @@ width: 158px;
       display: flex;
       flex-direction: column;
       a{
-       margin: 10px 0px;
-       font-size: 1.1em;
+       margin: 3px 0px;
+       font-size: 1em;
+      font-weight: 700;
        color: #3A3A3A;
        text-decoration: none;
        &:hover{
         text-decoration: none;
-        font-weight: 700;
+        font-weight: 900;
        }
       }
     }
@@ -257,30 +264,32 @@ width: 158px;
 }
 
 .bloc{
-display: inline-block;
-width: 80%;
+display: inline-flex;
+width: 83%;
+min-width: 375px;
 background: #f2f2f2;
 margin-top: 55px;
-}
 
 .menu--cards{
-  display: inline-block;
-  margin-top: 25px;
-  margin-right: 80px;
-  width: 32vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 25px 25px;
+  width: 100%;
 }  
   
 .menu--card {
-  display: flex;
-  display: inline-flex;
+    display: flex;
     flex-direction: row;
     align-content: center;
-    width: 100%;
+    width: 680px;
+    height: 165px;
     border: solid 5px transparent;
     border-radius: 20px;
     background: white;
     box-shadow: 0px 5px 5px 0 #e2e2e2;
-    margin: auto 20px 25px 20px;
+    margin: 20px 20px;
   
 &:hover{
   box-shadow: 5px 5px 3px lightgray;
@@ -294,15 +303,15 @@ margin-top: 55px;
   }
 
   .menu--image {
-    width: 128px;
-      height: 145px;
+      width: 155px;
+      //height: 145px;
       background-size: 100% 100%;
       border-radius: 15px 0 0 15px;
   
   }
     .menu--image img{
-      width: 100%;
-        height: 145px;
+        width: 100%;
+        height: 153px;
         background-size: 100% 100%;
         border-radius: 15px 0 0 15px;
         object-fit: cover;
@@ -317,17 +326,19 @@ margin-top: 55px;
   flex-wrap: wrap;
 }
     #menu--price {
-      font-size: 0.9rem;
+      font-size: 1rem;
       
     }
 
     #add{
       width: 35px;
       height: 35px;
+      margin: 15px auto;
       color: white;
       background-color: black;
       outline: solid 1px white;
       outline-offset: -2px;
     }
   }
+}
 </style>
