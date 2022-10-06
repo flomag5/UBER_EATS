@@ -1,7 +1,7 @@
 <template>
   <Header></Header>
   <div class="b6 ao ap d4 eq f8" id="banner">
-<img :src="restaurant.image" alt="photo du resto" class="img-responsive">
+    <img :src="restaurant.image" alt="photo du resto" class="img-responsive">
     <div class="restaurant--love">
       <div class="cercle">
       <span class="heart">
@@ -62,8 +62,8 @@
     </div>
     <div class="p-4 md:p-5 bg-gray-100">
       <div class="sm:flex sm:justify-between sm:items-center">
-        <div>
-          <div class="text-lg text-gray-700"><span class="text-gray-900 font-bold" id="menu--price">{{menu.price}}€</span> </div>
+        <div id="righ--el">
+          <div class="text-lg text-gray-700"><span class="text-gray-900 font-bold" id="menu--price">{{menu.price}}0€</span> </div>
           <button
             class="add" id="add"> + </button>
         </div>
@@ -72,16 +72,20 @@
   </div>
 </div>
 </div>
+<hr class="page--mark">
+<Footer />
 </template>
 
 <script>
 import Header from '../components/Header.vue'
+import Footer from "../components/Footer.vue"
 import RestaurantDataService from '../services/RestaurantDataService';
 
 export default {
   name: "Restaurant",
   components: {
-  Header,
+    Header,
+    Footer,
   },
   props: {
     restaurantId: Number,
@@ -137,33 +141,34 @@ export default {
 #banner {
   height: 200px;
   //width: 100%;
-  //position: absolute;
+  position: relative;
   background-size: cover;
   background-position: center center;
 .img-responsive{
   height: 200px;
     width: 100%;
    object-fit: cover;
+   //position: relative;
 }
 .cercle {
-  position: fixed absolute;
+    position: absolute;
     height: 42px;
     width: 42px;
     background-color: white;
     border-radius: 50%;
-    margin-left: 93%;
-    margin-bottom: -5.5%;
-}
-  
+    top: 12%;
+    right: 3%;
+    
   .fa-heart {
-    position:  relative;
+      position:  absolute;
       display: flex;
-      font-size: 1.5em;
+      font-size: 1.4em;
       color: transparent;
       -webkit-text-stroke: 3px black;
       opacity: 1;
-      margin-left: 94%;
-      padding-top: 1.7%;
+      top: 10px;
+      left: 9px;
+     
     }
   
     .fa-heart:hover {
@@ -175,6 +180,7 @@ export default {
       opacity: 1;
       transition: all 1.8s ease-in-out;
     }
+  }
 }
 button {
   background-color: #f6f6f6;
@@ -317,17 +323,16 @@ margin-top: 55px;
         object-fit: cover;
     }
   
-#menu--title{
-  font-weight: bold;
-
-}
-#menu--description{
-  display: flex;
-  flex-wrap: wrap;
-}
+    #menu--title{
+        font-weight: bold;
+    }
+    #menu--description{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
     #menu--price {
-      font-size: 1rem;
-      
+        font-size: 1rem;      
     }
 
     #add{
@@ -338,6 +343,10 @@ margin-top: 55px;
       background-color: black;
       outline: solid 1px white;
       outline-offset: -2px;
+      &:hover{
+        color: black;
+        background-color: #06C167;
+      }
     }
   }
 }

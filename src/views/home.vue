@@ -2,7 +2,9 @@
     <div class="home">
         <Header />
         <Hero />
+        <hr>
         <RestoRow />
+        <hr>
         <Footer />
         </div>
    

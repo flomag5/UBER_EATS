@@ -291,4 +291,28 @@ export default {
         }
     }
 }
+
+/**Responsive */
+@media screen and (max-width: 932px) {
+    .header{
+        img{
+            width: auto;
+        }
+    .order{
+        width: 60px;
+    }
+        .delivery {
+            width: 60px;
+        }
+        .user--session .submit{
+            width: 60px;
+        }
+                .user--session .login {
+                    width: 60px;
+                }
+                .wrapper--input{
+                    width: 0px;
+                }
+}
+}
 </style>
